@@ -1,0 +1,18 @@
+﻿@model NewProj.Models.PeopleViewModel
+
+<html>
+<body>
+    <form method="post">
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    @Html.LabelFor(model => Model.person.ProductName, htmlAttributes: new{ @class = "col-form-label"})
+                    @Html.EditorFor(model => Model.person.ProductName, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                    @Html.ValidationMessageFor(model => Model.person.ProductName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <button class="form-button" type="submit">Update</button>
+    </form>
+</body>
+</html>

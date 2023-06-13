@@ -1,0 +1,90 @@
+﻿
+@model NewProj.Models.PeopleViewModel
+    <head>
+        <title>Index Page</title>
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        
+    </head>
+    <body>
+        <h1>This is index page</h1>
+
+        <table class="table">
+            <tr>
+                <td>
+                    ProductId
+                </td>
+                <td>
+                ProductName
+                </td>
+            </tr>
+        @foreach(var obj in Model.Lst)
+        {
+            <tr>
+                <td>
+                    @obj.ProductId
+                </td>
+                <td>
+                    @obj.ProductName
+                </td>
+                <td>
+                    <button class="bg-dark text-primary edit"  data-edit="@obj.ProductId">Edit</button>
+                </td>
+                <td>
+                    <button class="bg-dark text-primary del"  data-del="@obj.ProductId">Delete</button>
+                </td>
+
+            </tr>
+        }
+        </table>
+        <div>
+        <button class="bg-dark text-primary" id="add">Add</button>
+        </div> 
+        <script src="~/lib/jquery/dist/jquery.min.js"> </script>
+        <script>
+        $(document).ready(function () {
+            $(".edit").click(function () {
+                var personId = $(this).data("edit");
+                
+
+                $.ajax({
+                    type: "GET",
+                    url: '@Url.Action("Edit", "Home")',
+                    data: { id: personId },
+                    success: function (data) {
+                        console.log(data);
+                  
+                        window.location.href = '@Url.Action("Edit", "Home")' + '/' + personId;
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        console.log("Error Occurred! Please try again");
+                    }
+
+                });
+            });
+        
+
+            //Class Identified
+                    $(".del").click(function () {
+                        var personId = $(this).data("del");
+                        debugger;
+                        $.ajax({
+                            type: "POST",
+                            url: '@Url.Action("Del", "Home")',
+                            data: { id: personId },
+                            success: function (data) {
+                                console.log("success")
+                                location.reload();
+                            },
+                            error: function (jqXHR, textStatus, errorThrown) {
+                                console.log("Error Occurred! Please try again");
+                            }
+                        });
+                    });
+
+                    $("#add").click(function(){
+                        window.location.href = '@Url.Action("Add", "Home")';
+                    })
+            
+        });
+        </script>
+    </body>

@@ -1,0 +1,51 @@
+﻿@model NewProj.Models.People
+
+<html>
+    <head>
+        <title>
+            Edit the view
+        </title>
+</head>
+<body>
+        <form method="post">
+            <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ProductName, htmlAttributes: new{ @class = "col-form-label"})
+                    @Html.EditorFor(model => model.ProductName, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                    @Html.ValidationMessageFor(model => model.ProductName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+          </div>
+            <button class="form-button" type="submit">Save</button>
+        </form>
+<script>
+        //$(document).ready(function () {
+        //    $(".edit").click(function () {
+
+        //        var personId = $(this).data("edit");
+        //        alert(personId);
+
+        //        var stdnobj = {
+        //            "Id": personId
+        //        };
+
+        //        $.ajax({
+        //            type: "POST",
+        //            url: '@Url.Action("Edit", "Home")',
+        //            data: JSON.stringify(stdnobj),
+        //            success: function (data) {
+        //                console.log(data)
+        //            },
+        //            complete: function (data) {
+        //                alert(data);
+        //            },
+        //            failure: function (jqXHR, textStatus, errorThrown) {
+        //                alert("Error Occured! Please try again");
+        //            }
+        //        });
+        //    });
+        //});
+</script>
+</body>
+</html>
